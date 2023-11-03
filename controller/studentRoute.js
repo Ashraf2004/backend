@@ -11,18 +11,9 @@ studentRoute.get("/",(req,res)=>{
             res.json(data);
     })
 })
-studentRoute.post("/create-student",(req,res)=>{
+studentRoute.post("/register",(req,res)=>{
     studentSchema.create(req.body, (err,data) => {
-        if(err)
-            return err;
-        else
-            res.json(data);
-    })
-})
-
-
-studentRoute.post("/register",async(req,res)=>{
-    const {email, password } = req.body;
+         const {email, password } = req.body;
   
     try{
         const oldUser = await User.findOne({email});
@@ -37,6 +28,10 @@ studentRoute.post("/register",async(req,res)=>{
     }catch(error){
         res.send({status:"error"});
     }
-});
+    })
+})
+
+
+
 
 module.exports = studentRoute;
