@@ -17,23 +17,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 app.use("/studentRoute",studentRoute);
 */
-app.post("/register",async(req,res)=>{
-    const {email, password } = req.body;
-  
-    try{
-        const oldUser = await User.findOne({email});
-        if(oldUser){
-           return res.send({error:"User Exists"});
-        }
-        await User.create({
-            email,
-            password,
-        });
-        res.send({status:"ok"});
-    }catch(error){
-        res.send({status:"error"});
-    }
-});
+
 app.listen(4000,()=>{
     console.log("Server started at 4000");
 })
