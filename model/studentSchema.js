@@ -6,4 +6,4 @@ const studentSchema = new mongoose.Schema({
     collection:"UserInfo"
 })
 
-module.exports = mongoose.model("UserInfo",UserDetailsScehma);
+module.exports = mongoose.model("UserInfo",studentSchema);
