@@ -11,25 +11,15 @@ studentRoute.get("/",(req,res)=>{
             res.json(data);
     })
 })
-studentRoute.post("/register",(req,res)=>{
+studentRoute.post("/create-student",(req,res)=>{
     studentSchema.create(req.body, (err,data) => {
-         const {email, password } = req.body;
-  
-    try{
-        const oldUser = await User.findOne({email});
-        if(oldUser){
-           return res.send({error:"User Exists"});
-        }
-        await User.create({
-            email,
-            password,
-        });
-        res.send({status:"ok"});
-    }catch(error){
-        res.send({status:"error"});
-    }
+        if(err)
+            return err;
+        else
+            res.json(data);
     })
 })
+
 
 
 
