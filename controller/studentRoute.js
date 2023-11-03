@@ -11,6 +11,14 @@ studentRoute.get("/",(req,res)=>{
             res.json(data);
     })
 })
+studentRoute.post("/create-student",(req,res)=>{
+    studentSchema.create(req.body, (err,data) => {
+        if(err)
+            return err;
+        else
+            res.json(data);
+    })
+})
 
 
 studentRoute.post("/register",async(req,res)=>{
