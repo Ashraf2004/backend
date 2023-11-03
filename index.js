@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 
 mongoose.set("strictQuery",true); //Deprection Warning //To supress warning
-mongoose.connect(mongodb+srv://ashrafshaik4444:Reeha2006@cluster1.2rwhqto.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect(mongodb+srv://ashrafshaik4444:Reeha2006@cluster1.2rwhqto.mongodb.net/postman");
 var db = mongoose.connection;
 db.on("open",()=>console.log("Connected to DB"));
 db.on("error",()=>console.log("Error occurred"));
