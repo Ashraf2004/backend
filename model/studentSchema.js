@@ -3,7 +3,7 @@ const studentSchema = new mongoose.Schema({
     email: {type: String, unique: true},
     password: String,
 },{
-    collection:"Registration"
+    collection:"registration"
 })
 
-module.exports = mongoose.model("Registration",studentSchema);
+module.exports = mongoose.model("registration",studentSchema);
