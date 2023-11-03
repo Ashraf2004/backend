@@ -3,6 +3,16 @@ const studentSchema = require("../model/studentSchema");
 const studentRoute = express.Router();
 const mongoose = require("mongoose");
 
+studentRoute.get("/",(req,res)=>{
+    studentSchema.find((err,data)=>{
+        if(err)
+            return err;
+        else
+            res.json(data);
+    })
+})
+
+
 studentRoute.post("/register",async(req,res)=>{
     const {email, password } = req.body;
   
