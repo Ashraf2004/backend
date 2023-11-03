@@ -3,50 +3,22 @@ const studentSchema = require("../model/studentSchema");
 const studentRoute = express.Router();
 const mongoose = require("mongoose");
 
-studentRoute.post("/create-student",(req,res)=>{
-    studentSchema.create(req.body, (err,data) => {
-        if(err)
-            return err;
-        else
-            res.json(data);
-    })
-})
-
-studentRoute.get("/",(req,res)=>{
-    studentSchema.find((err,data)=>{
-        if(err)
-            return err;
-        else
-            res.json(data);
-    })
-})
-studentRoute.route("/update-student/:id")
-.get((req,res)=>{
-    studentSchema.findById(mongoose.Types.ObjectId(req.params.id),(err,data)=>{
-        if(err)
-            return err;
-        else
-            res.json(data);
-    })
-}).put((req,res)=>{
-    studentSchema.findByIdAndUpdate(mongoose.Types.ObjectId(req.params.id),
-    {$set: req.body},
-    (err,data)=>{
-        if(err)
-            return err;
-        else
-            res.json(data);
-    })
-})
-
-studentRoute.delete("/delete-student/:id",(req,res)=>{
-    studentSchema.findByIdAndRemove(mongoose.Types.ObjectId(req.params.id),
-    (err,data)=>{
-        if(err)
-            return err;
-        else
-            res.json(data);
-    })
-})
+studentRoute.post("/register",async(req,res)=>{
+    const {email, password } = req.body;
+  
+    try{
+        const oldUser = await User.findOne({email});
+        if(oldUser){
+           return res.send({error:"User Exists"});
+        }
+        await User.create({
+            email,
+            password,
+        });
+        res.send({status:"ok"});
+    }catch(error){
+        res.send({status:"error"});
+    }
+});
 
 module.exports = studentRoute;
